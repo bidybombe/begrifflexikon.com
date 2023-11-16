@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Lexikon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        dl {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            border: 2px solid #ccc; /* Äußere Grenze des Rasters */
+            padding: 10px;
+        }
+        dt, dd {
+            padding: 10px;
+            border-bottom: 1px solid #ccc; /* Linie zwischen dt und dd */
+        }
+        dt {
+            font-weight: bold;
+            cursor: pointer; /* Füge einen Cursor hinzu, um zu zeigen, dass es klickbar ist */
+            border-right: 1px solid #ccc; /* Linie zwischen dt-Elementen */
+        }
+        .autocomplete-container {
+            position: relative;
+            display: inline-block;
+        }
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+        }
+        .autocomplete-dropdown div {
+            padding: 8px;
+            cursor: pointer;
+        }
+        #resultText {
+            margin-top: 20px;
+        }
+        #backToHome {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Begriffslexikon</h1>
+
+    <button id="backToHome" onclick="reloadPage()">Zurück zur Startseite</button>
+
+    <div class="autocomplete-container">
+        <input type="text" id="searchInput" oninput="showDropdown()" placeholder="Suche nach Begriffen">
+        <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
+    </div>
+
+    <dl id="lexikon">
+
+ 	<dt onclick="showText('Aktien')">Aktien</dt>
+        <dd>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens und macht den Besitzer zum Miteigentümer. Unternehmen geben Aktien aus, um Kapital zu beschaffen, und Investoren, die diese Aktien kaufen, werden Aktionäre. Der Wert einer Aktie wird durch Angebot und Nachfrage auf dem Aktienmarkt bestimmt. Aktionäre haben Rechte wie die Teilnahme an Hauptversammlungen und die Möglichkeit, Dividenden zu erhalten.</dd>
+
+	<dt onclick="showText('Anleihen')">Anleihen</dt>
+        <dd>Eine Anleihe ist eine Schuldverschreibung, die von Unternehmen, Regierungen oder anderen Einrichtungen ausgegeben wird, um Kapital aufzunehmen. Wenn jemand eine Anleihe kauft, leiht er dem Emittenten Geld. Im Gegenzug erhält der Anleger regelmäßige Zinszahlungen und am Ende der Laufzeit den Nennbetrag zurück. Anleihen gelten als festverzinsliche Wertpapiere, da die Zinszahlungen und der Rückzahlungsbetrag vorher festgelegt sind.</dd>
+
+	<dt onclick="showText('Anlageklasse')">Anlageklasse</dt>
+        <dd>Eine Anlageklasse ist eine Gruppe von Finanzinstrumenten mit ähnlichen Merkmalen und Risiken, die von Investoren als Teil ihres Portfolios gehalten werden. Beispiele für Anlageklassen sind Aktien, Anleihen, Immobilien und Bargeld. Jede Anlageklasse hat spezifische Rendite- und Risikocharakteristika, und die Diversifikation über verschiedene Anlageklassen hinweg wird oft genutzt, um das Gesamtrisiko in einem Portfolio zu verringern.</dd>
+
+	<dt onclick="showText('Anlageinstrumente')">Anlageinstrumente</dt>
+        <dd>Ein Anlageinstrument ist ein finanzielles Produkt oder Wertpapier, das es Anlegern ermöglicht, Geld anzulegen und Renditen zu erzielen. Beispiele für Anlageinstrumente sind Aktien, Anleihen, Investmentfonds, Optionen, Derivate und Sparprodukte. Diese Instrumente haben unterschiedliche Rendite- und Risikoprofile, und Anleger wählen sie entsprechend ihren finanziellen Zielen, Risikotoleranz und Anlagestrategien aus.</dd>
+
+	<dt onclick="showText('Blockchain')">Blockchain</dt>
+        <dd>Eine Blockchain ist eine dezentrale und verteilte digitale Datenbank, die Informationen in Form von Blöcken speichert. Jeder Block enthält einen Zeitstempel und eine Verbindung zu einem vorherigen Block, wodurch eine Kette von Blöcken entsteht. Diese Technologie wird oft in Kryptowährungen wie Bitcoin verwendet, um Transaktionen transparent und sicher zu verwalten. Die dezentrale Natur der Blockchain ermöglicht es, dass Daten kryptografisch gesichert und manipulationssicher sind, da Änderungen in einem Block alle nachfolgenden Blöcke beeinflussen würden.</dd>
+
+	<dt oneclick="showText('Börse')">Börse</dt>
+	<dd>Die Börse ist ein organisierter Marktplatz, an dem Finanzinstrumente wie Aktien, Anleihen und Rohstoffe gehandelt werden. Hier treffen Angebot und Nachfrage aufeinander, und die Preise der gehandelten Wertpapiere werden durch das Zusammenspiel von Käufern und Verkäufern bestimmt. Die Börse dient als Plattform für Unternehmen, um Kapital durch den Verkauf von Aktien zu beschaffen, und für Investoren, um diese Finanzinstrumente zu kaufen oder zu verkaufen, um von Kursbewegungen zu profitieren. Der Handel an der Börse erfolgt in der Regel elektronisch, wobei Käufer und Verkäufer über Computer- und Kommunikationssysteme miteinander verbunden sind.</dd>
+
+	<dt onclick="showText('CFD')">CFD</dt>
+        <dd>Ein CFD, oder Differenzkontrakt (englisch: Contract for Difference), ist ein Finanzderivat, das es Anlegern ermöglicht, auf Kursveränderungen von Finanzinstrumenten wie Aktien, Indizes, Rohstoffen oder Währungen zu spekulieren, ohne die zugrunde liegenden Vermögenswerte tatsächlich zu besitzen. Der CFD bildet die Kursbewegungen des Basiswerts ab, und Anleger können auf steigende oder fallende Kurse setzen. Dabei ergibt sich die Differenz zwischen dem Eröffnungs- und Schlusskurs des Kontrakts als Grundlage für Gewinne oder Verluste. CFDs ermöglichen es, mit Hebeln zu handeln, was potenziell höhere Gewinne, aber auch höhere Verluste bedeutet.</dd>
+
+	<dt onclick="showText('Crypto')">Crypto</dt>
+        <dd>Krypto, kurz für Kryptowährung, ist eine digitale oder virtuelle Form von Geld, die auf Kryptografie basiert. Kryptowährungen verwenden Technologien wie Blockchain, um Transaktionen zu sichern, die Schaffung neuer Einheiten zu kontrollieren und die Integrität des gesamten Systems zu gewährleisten. Anders als herkömmliche Währungen werden Kryptowährungen nicht von Regierungen oder Zentralbanken ausgegeben oder kontrolliert, sondern operieren auf dezentralen Netzwerken. Bekannte Beispiele für Kryptowährungen sind Bitcoin, Ethereum, Ripple und Litecoin.</dd>
+
+	<dt oneclick="showText('DayTrading')">DayTrading</dt>
+	<dd>Daytrading ist eine Handelsstrategie, bei der Finanzinstrumente wie Aktien, Währungen oder Rohstoffe innerhalb eines einzigen Handelstages gekauft und verkauft werden. Das Hauptziel des Daytraders ist es, von kurzfristigen Kursbewegungen zu profitieren. Im Gegensatz zu langfristigen Anlegern, die ihre Positionen über Wochen, Monate oder Jahre halten, schließt ein Daytrader seine Positionen vor Marktschluss am selben Tag.</dd>
+
+	<dt onclick="showText('Dividende')">Dividende</dt>
+        <dd>Eine Dividende ist eine Ausschüttung von Gewinnen, die von einem Unternehmen an seine Aktionäre gezahlt wird. Unternehmen, die Gewinne erzielen, können einen Teil dieser Gewinne an die Aktionäre zurückgeben, und dies geschieht in der Regel in Form von Dividenden. Die Höhe der Dividende pro Aktie wird vom Unternehmen festgelegt und kann regelmäßig oder als einmalige Zahlung erfolgen. Dividenden sind eine Möglichkeit für Aktionäre, direkt am Unternehmenserfolg teilzuhaben und Einnahmen aus ihrer Investition zu erhalten.</dd>
+
+	<dt onclick="showText('Domizil')">Domizil</dt>
+        <dd>Im Kontext der Börse bezieht sich das Domizil auf den rechtlichen Sitz oder Standort eines Unternehmens. Es gibt an, in welchem Land oder in welcher Rechtsordnung ein Unternehmen gegründet wurde und unter welchen rechtlichen Regelungen es operiert. Das Domizil kann Einfluss auf die steuerlichen, rechtlichen und regulatorischen Rahmenbedingungen haben, denen das Unternehmen unterliegt. Bei der Betrachtung von Börsennotierungen ist das Domizil daher relevant, da es Aufschluss darüber gibt, unter welchen gesetzlichen Bestimmungen ein Unternehmen handelt und welche rechtlichen Pflichten es seinen Aktionären gegenüber hat.</dd>
+
+	<dt onclick="showText('EPS')">EPS</dt>
+        <dd>EPS steht für "Earnings Per Share" (Gewinn pro Aktie) gibt an, wie viel Gewinn ein Unternehmen pro ausgegebene Aktie erzielt hat. Das EPS wird berechnet, indem der Nettogewinn des Unternehmens durch die durchschnittliche Anzahl der ausstehenden Aktien geteilt wird. Diese Kennzahl ist wichtig für Anleger, da sie Aufschluss darüber gibt, wie profitabel ein Unternehmen pro Aktienanteil ist. Ein höheres EPS wird oft als positiv betrachtet, da es darauf hindeutet, dass ein Unternehmen effizienten Gewinn erzielt.</dd>
+
+	<dt onclick="showText('Gläubiger')">Gläubiger</dt>
+        <dd>Ein Gläubiger ist eine Person oder Organisation, der von einer anderen Person oder Organisation Geld oder eine andere Art von Verbindlichkeit geschuldet wird. Der Gläubiger hat Anspruch auf die Rückzahlung des geliehenen Geldes oder die Erfüllung der vereinbarten Verpflichtungen durch den Schuldner. Gläubiger können beispielsweise Banken, Kreditgeber, Lieferanten oder Personen sein, denen Geld geliehen wurde. Der Begriff "Gläubiger" steht im Gegensatz zum "Schuldner", der die Verbindlichkeiten eingegangen ist und sie begleichen muss.</dd>
+
+	<dt onclick="showText('Hebel')">Hebel</dt>
+        <dd>Ein Hebel in der Börse bezieht sich auf die Möglichkeit, mit einem vergleichsweise geringen Kapitaleinsatz eine größere Position an Finanzinstrumenten zu kontrollieren. Dies wird oft durch den Einsatz von Fremdkapital erreicht. Der Hebel verstärkt sowohl potenzielle Gewinne als auch Verluste. Ein Beispiel dafür ist der Margin-Handel, bei dem Anleger nur einen Bruchteil des Gesamtwerts einer Position aus ihrem eigenen Kapital finanzieren und den Rest durch geliehenes Geld abdecken. Der Hebeleffekt kann das Renditepotenzial steigern, birgt jedoch auch höhere Risiken, da Verluste über den ursprünglich investierten Betrag hinausgehen können.</dd>
+
+	<dt onclick="showText('ISIN')">ISIN</dt>
+        <dd>Die Abkürzung ISIN steht für "International Securities Identification Number" (Internationale Wertpapierkennnummer). Es handelt sich um eine weltweit standardisierte Kennnummer, die Finanzinstrumente wie Aktien, Anleihen und andere handelbare Wertpapiere eindeutig identifiziert. Jede ISIN besteht aus 12 Zeichen und enthält Informationen über das Land, den Emittenten und das spezifische Finanzinstrument. Die ISIN dient dazu, Verwechslungen und Missverständnisse bei der Abwicklung von Transaktionen an den internationalen Finanzmärkten zu verhindern.</dd>
+
+	<dt onclick="showText('Marktkapitalisierung')">Marktkapitalisierung</dt>
+        <dd>Marktkapitalisierung, auch als Börsenwert oder Marktwert bezeichnet, ist der Gesamtwert aller ausgegebenen Aktien eines Unternehmens auf dem Markt. Sie wird berechnet, indem man den aktuellen Aktienkurs mit der Gesamtzahl der im Umlauf befindlichen Aktien multipliziert. Die Marktkapitalisierung gibt somit an, wie viel das gesamte Unternehmen auf dem Markt wert ist, und dient als Maßstab für die Größe und Bedeutung eines Unternehmens innerhalb der Finanzmärkte. Es ist wichtig zu beachten, dass die Marktkapitalisierung nicht den tatsächlichen Wert eines Unternehmens repräsentiert, sondern vielmehr den von den Marktteilnehmern zugewiesenen Wert basierend auf Angebot und Nachfrage nach seinen Aktien.</dd>
+
+	<dt onclick="showText('Nettoinventarwert')">Nettoinventarwert</dt>
+        <dd>Der Nettoinventarwert (auch als Net Asset Value, NAV, bezeichnet) ist der Wert aller Vermögenswerte eines Investmentfonds abzüglich seiner Verbindlichkeiten. Er repräsentiert den Preis pro Anteil, den Investoren für einen Fondsanteil zahlen müssen oder erhalten, wenn sie Anteile verkaufen. Der Nettoinventarwert wird in der Regel täglich berechnet und spiegelt die tatsächlichen Marktwerte der im Fonds enthaltenen Vermögenswerte wider. Der NAV ist eine zentrale Kennzahl für die Bewertung von Investmentfonds und dient als Grundlage für Transaktionen von Fondsanteilen zwischen Anlegern und Fondsgesellschaften.</dd>
+
+	<dt onclick="showText('Risikoklasse')">Risikoklasse</dt>
+        <dd>Die Risikoklasse ist eine Klassifizierung, die verwendet wird, um das Risikoniveau von Finanzprodukten oder Anlagen zu bewerten. Sie hilft Anlegern dabei, die potenziellen Risiken einer bestimmten Investition besser zu verstehen. Die Einstufung erfolgt in der Regel auf einer Skala von niedrigem bis hohem Risiko. Je höher die Risikoklasse, desto größer ist das potenzielle Risiko, aber oft auch die Möglichkeit für höhere Renditen. Diese Klassifizierung ermöglicht es Anlegern, ihre Investitionsentscheidungen entsprechend ihren eigenen Risikopräferenzen und Anlagezielen zu treffen.</dd>
+
+	<dt onclick="showText('Rendite')">Rendite</dt>
+        <dd>Die Rendite ist eine Kennzahl, die den Ertrag oder Gewinn im Verhältnis zum eingesetzten Kapital misst. Sie wird oft in Prozent ausgedrückt und gibt an, wie profitabel eine Investition oder Anlage ist. Rendite kann auf verschiedene Arten berechnet werden, abhängig von der Art der Investition. Im Allgemeinen gilt: Eine höhere Rendite deutet auf eine höhere Profitabilität hin, während eine niedrigere Rendite auf geringere Gewinne oder sogar Verluste hinweisen kann. Rendite ist somit eine wichtige Größe, um die Performance von Investitionen zu bewerten.</dd>
+
+	<dt onclick="showText('Spreads')">Spreads</dt>
+        <dd>Spreads bezieht sich allgemein auf die Differenz zwischen zwei Finanzinstrumenten, wie zum Beispiel dem Kauf- und Verkaufspreis von Wertpapieren, Devisen oder Rohstoffen. Diese Differenz wird auch als Bid-Ask-Spread bezeichnet und repräsentiert die Kosten des Handels. Der Bid-Preis ist der Höchstpreis, den jemand bereit ist zu zahlen, während der Ask-Preis der niedrigste Preis ist, zu dem jemand bereit ist zu verkaufen. Der Spread ist die Differenz zwischen diesen beiden Preisen und spiegelt die Liquidität und die Handelskosten wider. Je enger der Spread, desto geringer sind in der Regel die Handelskosten.</dd>
+
+	<dt onclick="showText('Solidaritätszuschlag')">Solidaritätszuschlag</dt>
+        <dd>Der Solidaritätszuschlag (kurz: Soli) ist eine zusätzliche Steuer, die in Deutschland erhoben wird. Er wurde ursprünglich eingeführt, um die finanziellen Belastungen im Zusammenhang mit der deutschen Wiedervereinigung zu bewältigen. Der Soli sollte ursprünglich befristet sein, wurde jedoch über die Jahre beibehalten.</dd>
+
+	<dt onclick="showText('Schuldner')">Schuldner</dt>
+        <dd>Ein Schuldner ist eine Person oder eine juristische Einheit, die gegenüber einer anderen Person oder Institution, dem Gläubiger, eine finanzielle Verpflichtung oder Schuld hat. Der Schuldner ist dazu verpflichtet, dem Gläubiger einen bestimmten Geldbetrag zu zahlen oder eine andere vertraglich vereinbarte Leistung zu erbringen. Es handelt sich also um jemanden, der eine Schuld oder Verbindlichkeit gegenüber einer anderen Partei hat.</dd>
+
+	<dt oneclick="showText('Split')">Split</dt>
+	<dd>Ein "Split" an der Börse bezieht sich auf die Aufteilung oder Unterteilung der bestehenden Aktien eines Unternehmens in mehrere Teile. Dabei erhält jeder Aktionär eine bestimmte Anzahl neuer Aktien für jede alte Aktie, wodurch sich der Gesamtwert der Investition nicht ändert. Der häufigste Aktiensplit ist der 2:1-Split, bei dem Aktionäre für jede gehaltene Aktie zwei neue erhalten. Splits werden oft durchgeführt, um die Handelbarkeit von Aktien zu erleichtern oder den Aktienkurs zu verringern, um ihn für eine breitere Anlegerbasis zugänglicher zu machen.</dd>
+       
+    </dl>
+
+    <div id="resultText"></div>
+
+    <script>
+        function showDropdown() {
+            var searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            var lexikonEntries = document.querySelectorAll("#lexikon dt");
+            var autocompleteDropdown = document.getElementById("autocompleteDropdown");
+
+            autocompleteDropdown.innerHTML = ""; // leere die vorherigen Einträge
+
+            lexikonEntries.forEach(function(entry) {
+                var entryText = entry.textContent.toLowerCase();
+
+                if (entryText.startsWith(searchTerm) && searchTerm !== "") {
+                    var suggestion = document.createElement("div");
+                    suggestion.textContent = entryText;
+                    suggestion.addEventListener("click", function() {
+                        document.getElementById("searchInput").value = entryText;
+                        autocompleteDropdown.style.display = "none";
+                        showText(entryText); // zeige den Text für den ausgewählten Begriff an
+                    });
+                    autocompleteDropdown.appendChild(suggestion);
+                }
+            });
+
+            // Zeige das Dropdown-Menü, wenn es Vorschläge gibt, ansonsten verstecke es
+            autocompleteDropdown.style.display = autocompleteDropdown.children.length > 0 ? "block" : "none";
+
+            // Verstecke den restlichen Text, außer h1 und Suchleiste
+            document.querySelectorAll("body > *:not(h1):not(.autocomplete-container):not(#resultText):not(button)").forEach(function(element) {
+                element.style.display = "none";
+            });
+        }
+
+        function showText(term) {
+            var lexikonEntries = document.querySelectorAll("#lexikon dt");
+            var resultText = document.getElementById("resultText");
+
+            // Durchsuche die Lexikon-Einträge nach dem ausgewählten Begriff
+            for (var i = 0; i < lexikonEntries.length; i++) {
+                if (lexikonEntries[i].textContent.toLowerCase() === term.toLowerCase()) {
+                    // Begriff gefunden, zeige den darunter stehenden dd-Abschnitt
+                    resultText.innerHTML = "<strong>" + lexikonEntries[i].textContent + "</strong><br>" + lexikonEntries[i].nextElementSibling.textContent;
+                    return;
+                }
+            }
+
+            // Begriff nicht gefunden
+            resultText.textContent = "Suchbegriff wird leider nicht im Lexikon erklärt";
+        }
+
+        function reloadPage() {
+            location.reload();
+        }
+    </script>
+
+</body>
+</html>
